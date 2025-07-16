@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img src="labelme/icons/icon.png"><br/>labelme
+  <img src="labelme/icons/icon.png"><br/>labelme - Customized by Shyandsy
 </h1>
 
 <h4 align="center">
@@ -25,6 +25,23 @@
 <div align="center">
   <img src="examples/instance_segmentation/.readme/annotation.jpg" width="70%">
 </div>
+
+## Customize Dev
+```
+$ python -m venv .venv
+$ source .venv/bin/activate
+
+$ curl -LsSf https://astral.sh/uv/install.sh | sh
+
+$ pip install --upgrade hatch hatchling hatch-vcs hatch-fancy-pypi-readme setuptools wheel twine
+
+$ make setup
+```
+
+## Customized Feature
+1. show filename in file list widgt rather than full path
+2. show row # for files in file list widget
+3. keep previous scale
 
 ## Description
 
@@ -147,19 +164,3 @@ pyinstaller labelme/labelme/__main__.py \
 ## Acknowledgement
 
 This repo is the fork of [mpitid/pylabelme](https://github.com/mpitid/pylabelme).
-
-
-## Customize Dev
-```
-$ python -m venv .venv
-$ source .venv/bin/activate
-$ pip install setuptools wheel twine
-
-$ curl -LsSf https://astral.sh/uv/install.sh | sh
-
-$ make setup
-```
-
-## Customized Feature
-1. show filename in file list widgt rather than full path
-2. show row # for files in file list widget
