@@ -44,4 +44,6 @@ test:  # Run tests
 	$(call exec,uv run pytest -v tests/)
 
 build:  # Build the package
-	$(call exec,uv build)
+	$(call exec,uv lock --upgrade-package setuptools)
+	$(call exec,rm -rf dist/ build/)
+	$(call exec,hatch build)
