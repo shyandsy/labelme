@@ -1445,11 +1445,15 @@ class MainWindow(QtWidgets.QMainWindow):
                 flags=flags,
             )
             self.labelFile = lf
-            items = self.fileListWidget.findItems(self.imagePath, Qt.MatchExactly)  # type: ignore[arg-type,attr-defined]
+            items = self.fileListWidget.findItems(os.path.split(self.imagePath)[-1], Qt.MatchContains) 
             if len(items) > 0:
-                if len(items) != 1:
-                    raise RuntimeError("There are duplicate files.")
-                items[0].setCheckState(Qt.Checked)  # type: ignore[attr-defined]
+                for item in items:
+                    if item.data(Qt.UserRole) == self.imagePath:
+                        found = True
+                        items[0].setCheckState(Qt.Checked)  # type: ignore[attr-defined]
+                        break
+                if not found:
+                    raise RuntimeError(f"The file not found: {self.imagePath}.")
             # disable allows next and previous image to proceed
             # self.filename = filename
             return True
@@ -1772,6 +1776,9 @@ class MainWindow(QtWidgets.QMainWindow):
 
     def adjustScale(self, initial=False):
         value = self.scalers[self.FIT_WINDOW if initial else self.zoomMode]()
+        if 'zoom_value' in self._config and self._config['zoom_value'] > 0:
+            value = self._config['zoom_value']
+
         value = int(100 * value)
         self.zoomWidget.setValue(value)
         self.zoom_values[self.filename] = (self.zoomMode, value)
