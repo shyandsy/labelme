@@ -8,7 +8,7 @@ class FileListWidget(QListWidget):
     def addItem(self, item):
         # 提取文件名（不带路径）
         full_path = item.text()
-        filename = full_path[len(self.base_path):]
+        filename = full_path[len(self.base_path)+1:]
         # 创建项并存储完整路径到 UserRole
         item.setData(Qt.UserRole, full_path)  # 存储完整路径
         item.setData(Qt.UserRole + 1, filename)  # 存储文件名
