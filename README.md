@@ -26,6 +26,12 @@
   <img src="examples/instance_segmentation/.readme/annotation.jpg" width="70%">
 </div>
 
+## Installation
+
+```shell
+pip3 install labelme-shy
+```
+
 ## Customize Dev
 ```
 $ python -m venv .venv
@@ -36,12 +42,23 @@ $ curl -LsSf https://astral.sh/uv/install.sh | sh
 $ pip install --upgrade hatch hatchling hatch-vcs hatch-fancy-pypi-readme setuptools wheel twine
 
 $ make setup
+
+$ pip install uv twine
+
+$ make build
+
+$ twine upload dist/*
 ```
 
 ## Customized Feature
 1. show filename in file list widgt rather than full path
 2. show row # for files in file list widget
-3. keep previous scale
+3. keep previous scale by default
+4. specific the scale zoom value in config file to keep a scale
+
+### demo images
+
+TODO
 
 ## Description
 
